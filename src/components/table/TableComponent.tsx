@@ -55,8 +55,15 @@ const StyledTable = styled(Table)`
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   .ant-table-thead > tr > th {
     background: var(--primary-color);
-    color: #01338d;
+    color: white;
     font-size: 14px;
     cursor: pointer;
+
+    & .ant-table-column-sorters:hover {
+      color: var(--header-title-color);
+    }
+  }
+  .ant-table-column-sort span{
+    color: var(--header-title-color);
   }
 `;

@@ -11,7 +11,7 @@ export type HeaderConfig = {
 
 export const headersConfig: { [type: string]: HeaderConfig } = {
   id: { label: "ID", type: DataTypes.STRING },
-  amount_cents: { label: "Amount (EGP)", type: DataTypes.NUMBER },
+  amount_cents: { label: "Amount", type: DataTypes.NUMBER },
   currency: { label: "Currency", type: DataTypes.STRING },
   payment_status: { label: "Payment Status", type: DataTypes.STRING },
   created_at: { label: "Created At", type: DataTypes.DATE },
