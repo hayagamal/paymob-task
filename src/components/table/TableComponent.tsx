@@ -1,6 +1,7 @@
-import { getFormatter } from "../../utils/formatters";
-import { HeaderConfig } from "../../utils/tableConfigs";
+import { Table, TableProps } from "antd";
 import styled from "styled-components";
+import { HeaderConfig } from "../../utils/tableConfigs";
+import { getFormatter } from "../../utils/formatters";
 
 export type TableComponentProps = {
   headersConfig: { [type: string]: HeaderConfig };
@@ -11,82 +12,51 @@ export default function TableComponent({
   headersConfig,
   data,
 }: TableComponentProps) {
-  if (data.length === 0) {
-    return <EmptyMessage>No data available</EmptyMessage>;
-  }
+  const columns: TableProps<any>["columns"] = Object.entries(headersConfig).map(
+    ([key, { label, type }]) => ({
+      title: label,
+      dataIndex: key,
+      key,
+      sorter:
+        key === "amount_cents" || key === "created_at"
+          ? (a, b) => {
+              if (key === "amount_cents") return a[key] - b[key];
+              if (key === "created_at")
+                return new Date(a[key]).getTime() - new Date(b[key]).getTime();
+              return 0;
+            }
+          : false,
+      render: (value, record) => getFormatter(type, record)(value),
+    })
+  );
 
   return (
     <TableWrapper>
-      <StyledTable>
-        <thead>
-          <tr>
-            {Object.entries(headersConfig).map(([key, { label }]) => (
-              <TableHeader key={key}>{label}</TableHeader>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((payment, index) => (
-            <TableRow key={index}>
-              {Object.entries(headersConfig).map(([key, header]) => {
-                const cellValue = payment[key];
-                const formatter = getFormatter(header.type, payment);
-                const formattedValue = formatter(cellValue);
-
-                return <TableCell key={key}>{formattedValue}</TableCell>;
-              })}
-            </TableRow>
-          ))}
-        </tbody>
-      </StyledTable>
+      <StyledTable
+        columns={columns}
+        dataSource={data.map((item, index) => ({ ...item, key: index }))}
+        pagination={false}
+      />
     </TableWrapper>
   );
 }
 
 const TableWrapper = styled.div`
-  overflow-x: auto;
   padding: 20px;
-  background: var(--background-wrapper);
+  background: #f4f7fb;
   border-radius: 12px;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 `;
 
-const StyledTable = styled.table`
-  width: 100%;
-  border-collapse: collapse;
+const StyledTable = styled(Table)`
   background: white;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-`;
-
-const TableHeader = styled.th`
-  background: var(--primary-color);
-  color: white;
-  padding: 15px;
-  text-align: left;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-`;
-
-const TableRow = styled.tr`
-  &:hover {
-    background-color: var(--background-hover);
+  .ant-table-thead > tr > th {
+    background: var(--primary-color);
+    color: #01338d;
+    font-size: 14px;
     cursor: pointer;
   }
-`;
-
-const TableCell = styled.td`
-  padding: 12px;
-  border-bottom: 1px solid var(--border-color);
-  text-align: left;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-`;
-
-const EmptyMessage = styled.div`
-  text-align: center;
-  padding: 20px;
-  color: var(--empty-table);
-  font-size: 16px;
 `;
