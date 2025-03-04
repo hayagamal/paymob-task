@@ -11,7 +11,8 @@ This app is a dynamic table component built with React and TypeScript, designed 
 ✅ Using Ant Design for features like sorting provides a quick, consistent, and customizable solution with pre-built components, reducing development time and ensuring a polished user experience.
 
 ## Screen recording
-[screen-capture.webm](https://github.com/user-attachments/assets/70be181b-ea76-4594-8db0-d97ec943ba4e)
+[screen-capture (1).webm](https://github.com/user-attachments/assets/eaa2982a-39ec-4e08-a7f1-942c0e8e2420)
+
 
 
 
