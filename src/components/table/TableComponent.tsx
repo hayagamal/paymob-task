@@ -46,7 +46,7 @@ export default function TableComponent({
 const TableWrapper = styled.div`
   overflow-x: auto;
   padding: 20px;
-  background: #f4f7fb;
+  background: var(--background-wrapper);
   border-radius: 12px;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 `;
@@ -70,18 +70,15 @@ const TableHeader = styled.th`
 `;
 
 const TableRow = styled.tr`
-  &:nth-child(even) {
-    background-color: #f7f9fc;
-  }
   &:hover {
-    background-color: #e5f2fe;
+    background-color: var(--background-hover);
     cursor: pointer;
   }
 `;
 
 const TableCell = styled.td`
   padding: 12px;
-  border-bottom: 1px solid #e1e6f4;
+  border-bottom: 1px solid var(--border-color);
   text-align: left;
   font-size: 14px;
   letter-spacing: 0.5px;
@@ -90,6 +87,6 @@ const TableCell = styled.td`
 const EmptyMessage = styled.div`
   text-align: center;
   padding: 20px;
-  color: #888;
+  color: var(--empty-table);
   font-size: 16px;
 `;

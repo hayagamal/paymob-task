@@ -1,6 +1,10 @@
 :root {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   --primary-color: #0080f9;
+  --background-hover: #e5f2fe;
+  --border-color: #e1e6f4;
+  --background-wrapper: #f4f7fb;
+  --empty-table: #888;
 }
 
 body {
