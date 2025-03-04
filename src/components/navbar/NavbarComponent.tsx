@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default function NavbarComponent() {
+export function NavbarComponent() {
   return (
     <Navbar>
       <Row>

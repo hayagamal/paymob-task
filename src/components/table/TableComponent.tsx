@@ -8,7 +8,7 @@ export type TableComponentProps = {
   data: Record<string, number | string | Date>[];
 };
 
-export default function TableComponent({
+export function TableComponent({
   headersConfig,
   data,
 }: TableComponentProps) {

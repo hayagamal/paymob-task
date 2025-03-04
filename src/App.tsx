@@ -1,5 +1,5 @@
-import NavbarComponent from "./components/navbar/NavbarComponent";
-import TableComponent from "./components/table/TableComponent";
+import { NavbarComponent } from "./components/navbar/NavbarComponent";
+import { TableComponent } from "./components/table/TableComponent";
 import data from "./utils/payments.json";
 import { headersConfig } from "./utils/tableConfigs";
 import styled from "styled-components";
